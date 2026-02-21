@@ -101,6 +101,67 @@ body {
     list-style: none;
     gap: 2rem;
     flex-wrap: wrap;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 1rem;
+    z-index: 1100;
+}
+.nav-toggle .bar {
+    width: 28px;
+    height: 3px;
+    background: white;
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 0 0 1rem 0;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+    .nav-menu.open {
+        max-height: 400px;
+        opacity: 1;
+        padding-top: 0.5rem;
+    }
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-link {
+        display: block;
+        width: 100%;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+}
 }
 
 .nav-link {
@@ -484,6 +545,18 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 4rem;
+    overflow: hidden;
+}
+
+.profile-img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 16px rgba(37,99,235,0.15);
+    background: #e0e7ef;
+}
 }
 
 .team-avatar.uma {

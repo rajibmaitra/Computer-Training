@@ -169,17 +169,25 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Responsive navigation menu toggle (for mobile)
-function setupMobileMenu() {
+// Hamburger menu toggle for mobile nav
+document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
-    const navContainer = document.querySelector('.nav-container');
-    
-    if (window.innerWidth <= 768) {
-        // Could add hamburger menu functionality here
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+            const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !expanded);
+            navMenu.classList.toggle('open');
+        });
+        // Close menu when a link is clicked (for better UX)
+        navMenu.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
     }
-}
-
-window.addEventListener('resize', setupMobileMenu);
-setupMobileMenu();
+});
 
 // Add keyboard navigation support
 document.addEventListener('keydown', function(e) {
